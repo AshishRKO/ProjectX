@@ -21,9 +21,9 @@ function set_openid(openid, pr)
 
 <form name="Item_1" action="{{ url_for('login') }}" method='GET'>
     <select name="Language_Selector">
-        <option value="C">C</option>
-        <option value="C++">C++</option>
-        <option value="JAVA">JAVA</option>
+        <option value="c">c</option>
+        <option value="c++">c++</option>
+        <option value="java">java</option>
                 
     </select>
     <button type="submit">Change Language!</button>
@@ -35,7 +35,7 @@ function set_openid(openid, pr)
     {{ form.hidden_tag() }}
     <p>
         Please enter your OpenID, or select one of the providers below:<br>
-        {{ form.openid(size=80) }}
+        {{ form.openid(size=150) }}
         {% for error in form.openid.errors %}
           <span style="color: red;">[{{error}}]</span>
         {% endfor %}<br>
@@ -46,4 +46,14 @@ function set_openid(openid, pr)
     <p>{{ form.remember_me }} Remember Me</p>
     <p><input type="submit" value="Run"></p>
 </form>
+
+<h1>The other thing</h1>
+<form action="{{ url_for('login') }}" method="post" name="login">
+    <textarea name="json" autocomplete="off" style="height: 400px; width: 400px"  > </textarea>
+     
+    <p><input type="submit" value="Run"></p>
+</form>
+
+
+
 {% endblock %}

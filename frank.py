@@ -61,13 +61,19 @@ def match(output):
         return b
     else:
         return 404
-'''For a C file
-file = 'add.c'
+'''For a C file'''
+'''
+file = 'Main.c'
 lang = 'c'
 testin = 'testin.txt'
 testout = 'testout.txt'
 timeout = '1' # secs
+
+print(codes[compile(file,'c')])
+print (codes[run('Main',testin,timeout,lang)])
+print (match(testout))  # True implies that code is accepted.
 '''
+
 '''For a C++ file
 file = 'hel.cpp'
 lang = 'cpp'
@@ -85,13 +91,13 @@ testin = 'testin.txt'
 testout = 'testout.txt'
 timeout = '1' # secs
 
+
 filename=file.split('.')[0]
 print(codes[compile(file,lang)])
 print (codes[run(filename,testin,timeout,lang)])
 print (match(testout))  # True implies that code is accepted.
-
-
 '''
+
 
 
 
