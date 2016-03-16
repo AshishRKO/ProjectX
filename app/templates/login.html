@@ -7,7 +7,8 @@
 function set_openid(openid, pr)
 {
     u = openid.search('<username>')
-    if (u != -1) {
+    if (u != -1) 
+    {
         // openid requires username
         user = prompt('Enter your ' + pr + ' username:')
         openid = openid.substr(0, u) + user
@@ -16,6 +17,19 @@ function set_openid(openid, pr)
     form.elements['openid'].value = openid
 }
 </script>
+
+
+<form name="Item_1" action="{{ url_for('login') }}" method='GET'>
+    <select name="Language_Selector">
+        <option value="C">C</option>
+        <option value="C++">C++</option>
+        <option value="JAVA">JAVA</option>
+                
+    </select>
+    <button type="submit">Change Language!</button>
+</form>
+
+
 <h1>Sign In</h1>
 <form action="" method="post" name="login">
     {{ form.hidden_tag() }}
@@ -30,6 +44,6 @@ function set_openid(openid, pr)
         {% endfor %}
     </p>
     <p>{{ form.remember_me }} Remember Me</p>
-    <p><input type="submit" value="Sign In"></p>
+    <p><input type="submit" value="Run"></p>
 </form>
 {% endblock %}

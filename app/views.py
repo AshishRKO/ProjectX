@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 from app import app
 from .forms import LoginForm
 import frank
@@ -13,16 +13,27 @@ def index():
     return "Correct Solutions"
 
 
+@app.route('/wrong')
+def wrong():
+    return "Incorrect Solutions"
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    L=request.args.get('Language_Selector')
+    print L
     if form.validate_on_submit():
     	print form.openid.data
     	res= check(form.openid.data)
         flash('Login requested for OpenID="%s", remember_me=%s' %
               (form.openid.data, str(form.remember_me.data)))
         if(res==True):
+        	return "Correct hai yaar"
         	return redirect('/index')
+        else:
+        	return redirect('/wrong')
     return render_template('login.html', 
                            title='Sign In',
                            form=form,
