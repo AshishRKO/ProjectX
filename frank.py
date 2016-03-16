@@ -12,7 +12,14 @@ def compile(file,lang):
 
     if (os.path.isfile(class_file)):
         os.remove(class_file)
+    print "FILE= "+str(file)
+
+    print os.path.dirname(os.path.abspath(__file__))
+
+    print os.getcwd()
+
     if (os.path.isfile(file)):
+        print "File found"
         if lang == 'java':
             os.system('javac '+file)
         elif(lang=='cpp'):
@@ -25,6 +32,7 @@ def compile(file,lang):
         else:
             return 400
     else:
+        print "Else running"
         return 404
 
 def run(file,input,timeout,lang):
@@ -60,22 +68,34 @@ testin = 'testin.txt'
 testout = 'testout.txt'
 timeout = '1' # secs
 '''
-'''For a C++ file'''
+'''For a C++ file
 file = 'hel.cpp'
 lang = 'cpp'
 lang = file.split('.')[1]
 testin = 'testin.txt'
 testout = 'testout.txt'
 timeout = '1' # secs
+'''
 
-''' In Case of java mention only file name without .java extension
-file = 'Main'
+
+'''
+file = 'Main.java'
 lang = 'java'
 testin = 'testin.txt'
 testout = 'testout.txt'
 timeout = '1' # secs
-'''
+
 filename=file.split('.')[0]
 print(codes[compile(file,lang)])
 print (codes[run(filename,testin,timeout,lang)])
 print (match(testout))  # True implies that code is accepted.
+
+
+'''
+
+
+
+
+
+
+
