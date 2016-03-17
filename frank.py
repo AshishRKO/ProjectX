@@ -74,13 +74,18 @@ print (codes[run('Main',testin,timeout,lang)])
 print (match(testout))  # True implies that code is accepted.
 '''
 
-'''For a C++ file
-file = 'hel.cpp'
+'''For a C++ file'''
+'''
+file = 'Main.cpp'
 lang = 'cpp'
 lang = file.split('.')[1]
 testin = 'testin.txt'
 testout = 'testout.txt'
 timeout = '1' # secs
+
+print(codes[compile(file,'cpp')])
+print (codes[run('Main',testin,timeout,lang)])
+print (match(testout))  # True implies that code is accepted.
 '''
 
 

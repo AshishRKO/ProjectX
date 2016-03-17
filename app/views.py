@@ -21,6 +21,7 @@ def wrong():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    print "Inside login"
     L=request.args.get('Language_Selector')
     return render_template('login.html')
     return "GO GO GO"
@@ -64,6 +65,7 @@ def login():
 
 @app.route('/Processor', methods=['GET', 'POST'])
 def Processor():
+	print "Inside Processor function---------------------------"
 	print request.form
 	code=request.form['data']
 	lang=request.form['Language_Selector']
@@ -82,6 +84,9 @@ def Processor():
 	elif(lang=='c'):
 		print "C running"
 		res= checkC(str(code))
+	elif(lang=='c++'):
+		print "C++ running"
+		res=checkCpp(str(code))
 	else:
 		print "Nothing Running"
     	
@@ -90,12 +95,6 @@ def Processor():
 		return redirect('/index')
 	else:
 		return redirect('/wrong')
-    
-
-
-
-	return str(code)
-
 
 
 
@@ -144,6 +143,27 @@ def checkC(data):
 
  	return res
 
+
+def checkCpp(data):
+	print "Checking C++ program"
+
+	f = open("Main.cpp", "w")
+	f.write(data)
+
+	f.close()
+	file = 'Main.cpp'
+	lang='cpp'
+	testin = 'testin.txt'
+	testout = 'testout.txt'
+	timeout = '1' # secs
+
+	filename=file.split('.')[0]
+	print(codes[frank.compile(file,lang)])
+	print (codes[frank.run(filename,testin,timeout,lang)])
+	res = frank.match(testout)
+	print res
+
+ 	return res
 
 
 
