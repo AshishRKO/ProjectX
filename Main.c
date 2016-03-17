@@ -1,6 +1,7 @@
-#include <stdio.h>   
-int main()  
-{ 	     
-	printf("%s","The Game is ON");	
-	     return 0;
+ public class Main 
+{ 	
+public static void main(String args[]) 	
+{ 		
+System.out.print("The Game is ON"); 	
+} 
 }

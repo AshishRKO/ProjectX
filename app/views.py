@@ -22,6 +22,8 @@ def wrong():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     L=request.args.get('Language_Selector')
+    return render_template('login.html')
+    return "GO GO GO"
     print "List is "
     print L
     print type(L)
@@ -32,26 +34,23 @@ def login():
     print type(code)
 
     
-    form= LoginForm()
-    if form.validate_on_submit():
+    
     	#print form.openid.data
-    	res=False
-    	if(L=='java'):
-    		print "JAVA running"
-    		res= checkJAVA(form.openid.data)
-    	elif(L=='c'):
-    		print "C running"
-    		res= checkC(form.openid.data)
-    	else:
-    		print "Nothing Running"
+    res=False
+    if(L=='java'):
+    	print "JAVA running"
+    	res= checkJAVA(str(code))
+    elif(L=='c'):
+    	print "C running"
+    	res= checkC(str(code))
+    else:
+    	print "Nothing Running"
     	
 
-        flash('Login requested for OpenID="%s", remember_me=%s' %
-              (form.openid.data, str(form.remember_me.data)))
-        if(res==True):
-        	return redirect('/index')
-        else:
-        	return redirect('/wrong')
+    if(res==True):
+        return redirect('/index')
+    else:
+        return redirect('/wrong')
     
 
 
@@ -61,6 +60,41 @@ def login():
                            providers=app.config['OPENID_PROVIDERS'])
     
     return "Giving Response"
+
+
+@app.route('/Processor', methods=['GET', 'POST'])
+def Processor():
+	print request.form
+	code=request.form['data']
+	lang=request.form['Language_Selector']
+	print code
+	print type(code)
+	
+
+	print lang
+	print type(lang)
+	print str(lang)
+
+	res=False
+	if(lang=='java'):
+		print "JAVA running"
+		res= checkJAVA(str(code))
+	elif(lang=='c'):
+		print "C running"
+		res= checkC(str(code))
+	else:
+		print "Nothing Running"
+    	
+
+	if(res==True):
+		return redirect('/index')
+	else:
+		return redirect('/wrong')
+    
+
+
+
+	return str(code)
 
 
 
